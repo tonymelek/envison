@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 5000;
 const app = express();
+
 const requireEnvConfig = require('./dotenv/config')
 
 
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV === "production") {
 } else {
   app.use(express.static("client/public"))
 }
+
 
 //  API routes
 
