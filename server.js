@@ -10,10 +10,10 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 } else {
-  const requireEnvConfig = require('./dotenv/config')
-  app.use(express.static("client/public"))
-}
 
+  app.use(express.static("client/public"))
+  require('./dotenv/config')
+}
 
 //  API routes
 
