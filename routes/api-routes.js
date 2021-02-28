@@ -15,7 +15,7 @@ db.on("error", error => {
 });
 //APIs
 router.get("/save", (req, res) => {
-    db['sample-data'].find({ direction: { $not: /^$/ } }, { _id: 0, locationName: 0, object: 0 }, (error, data) => {
+    db['sample-data'].find({ direction: { $not: /^$/ } }, { _id: 0, locationName: 0, object: 0 }).sort({ timestamp: 1 }).skip(50000, (error, data) => {
         if (error) {
             res.send(error);
         } else {
@@ -39,7 +39,7 @@ router.get("/all", (req, res) => {
 });
 
 router.get("/fresh", (req, res) => {
-    db['sample-data'].find({ direction: { $not: /^$/ } }, { _id: 0, locationName: 0, object: 0 }, (error, data) => {
+    db['sample-data'].find({ direction: { $not: /^$/ } }, { _id: 0, locationName: 0, object: 0 }).sort({ timestamp: 1 }).skip(50000, (error, data) => {
         if (error) {
             res.send(error)
         } else {
