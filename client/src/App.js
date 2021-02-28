@@ -17,6 +17,8 @@ function App() {
   const width = window.innerWidth > 600 ? 600 : window.innerWidth - 20
 
   useEffect(() => {
+    const start=new Date().getTime()
+    let end;
     API.freshData().then(res => { //try to get fresh data
       setData(res)
       const tempHours = [...new Set(res.map(record => record.timestamp.split('T')[1].split(':')[0]))]
@@ -24,7 +26,8 @@ function App() {
       setHours(tempHours.sort())
       setDays(tempDays.sort())
       setLoading(false)
-      console.log("we got fresh data");
+      let end = new Date().getTime()
+      console.log(`we got fresh data in ${(end-start)/1000} sec`);
     }).catch(error => {
       API.getAllData().then(res => { //retreve pre-saved data
         setData(res)
@@ -33,7 +36,8 @@ function App() {
         setHours(tempHours.sort())
         setDays(tempDays.sort())
         setLoading(false)
-        console.log("we retrieved pre-saved data");
+        let end = new Date().getTime()
+        console.log(`we retrieved pre-saved data in ${(end - start) / 1000} sec`);
       }).catch(err => console.log(err))
       API.refreshData()
     })
