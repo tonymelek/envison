@@ -15,7 +15,7 @@ db.on("error", error => {
 });
 //APIs
 router.get("/save", (req, res) => {
-    db['sample-data'].find({ direction: { $exists: true } }, (error, data) => {
+    db['sample-data'].find({ direction: { $not: /^$/ } }, (error, data) => {
         if (error) {
             res.send(error);
         } else {
@@ -26,9 +26,10 @@ router.get("/save", (req, res) => {
                 }
 
             })
-            res.send({ msg: 'saved data' })
+
         }
     });
+    res.send({ msg: 'saved data' })
 });
 router.get("/all", (req, res) => {
     const data = fs.readFileSync(path.join(__dirname, '../json/temp.json'))
