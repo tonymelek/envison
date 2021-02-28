@@ -11,5 +11,11 @@ export default {
         const data = await response.json()
         return data;
 
-    }
+    },
+    async freshData() {
+        const response = await fetch('/api/fresh')
+        const data = await response.json()
+        return data;
+
+    },
 }

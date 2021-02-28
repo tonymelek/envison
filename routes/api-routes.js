@@ -38,7 +38,7 @@ router.get("/all", (req, res) => {
     res.send(JSON.parse(data))
 });
 
-router.get("/test", (req, res) => {
+router.get("/fresh", (req, res) => {
     db['sample-data'].find({ direction: { $not: /^$/ } }, { _id: 0, locationName: 0, object: 0 }, (error, data) => {
         if (error) {
             res.send(error)
