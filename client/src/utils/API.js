@@ -5,5 +5,11 @@ export default {
         const data = await response.json()
         return data;
 
+    },
+    async refreshData() {
+        const response = await fetch('/api/save')
+        const data = await response.json()
+        return data;
+
     }
 }
