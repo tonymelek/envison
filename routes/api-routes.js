@@ -47,7 +47,15 @@ router.get("/test", (req, res) => {
         }
     })
 })
-
+router.get("/test2", (req, res) => {
+    db['sample-data'].findOne({ timestamp: '2021-02-24T10:04:10.102Z' }, (error, data) => {
+        if (error) {
+            res.send(error)
+        } else {
+            res.send(data)
+        }
+    })
+})
 
 //export router
 module.exports = router;
